@@ -55,7 +55,7 @@ class PluginFeature : Plugin<Project> {
 
                 sourceSets.apply {
                     commonMain.configure {
-//                        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+                        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                         dependencies {
                             implementation(compose.runtime)
                             implementation(compose.foundation)
@@ -69,6 +69,7 @@ class PluginFeature : Plugin<Project> {
                                 libs.findLibrary("ktor.client.content.negotiation").get()
                             )
                             implementation(libs.findLibrary("ktor.client.serialization").get())
+                            implementation(libs.findLibrary("materialKolor").get())
                             implementation(libs.findLibrary("ktor.serialization.json").get())
                             implementation(libs.findLibrary("ktor.client.logging").get())
                             implementation(libs.findLibrary("androidx.lifecycle.viewmodel").get())

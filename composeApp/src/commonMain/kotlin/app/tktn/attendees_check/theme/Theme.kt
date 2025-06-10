@@ -6,6 +6,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import com.materialkolor.rememberDynamicColorScheme
 
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryLight,
@@ -96,8 +98,9 @@ internal fun AppTheme(
     ) {
         val isDark by isDarkState
         SystemAppearance(!isDark)
+        val colorScheme = rememberDynamicColorScheme(Color(0xFF48A6A7), isDark)
         MaterialTheme(
-            colorScheme = if (isDark) DarkColorScheme else LightColorScheme,
+            colorScheme = colorScheme,
             content = { Surface(content = content) }
         )
     }

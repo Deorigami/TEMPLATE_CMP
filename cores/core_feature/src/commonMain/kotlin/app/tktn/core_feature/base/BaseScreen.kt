@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.navigation.NavHostController
+import app.tktn.core_feature.util.LocalNavigationController
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -36,7 +37,9 @@ abstract class BaseScreen {
 
     @Composable
     fun ComposableScreen() {
-
+        val navController = LocalNavigationController.current
+        ComposeContent(navController)
+        ComposeContent()
     }
 }
 

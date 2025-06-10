@@ -36,7 +36,9 @@ plugins {
 include(
     ":composeApp",
     ":features:feature_auth",
+    ":features:feature_dashboard",
     ":cores:core_feature",
+    ":cores:components",
     ":cores:core_service",
 )
 includeBuild("build-logic")
