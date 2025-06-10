@@ -15,9 +15,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import app.tktn.attendees_check.screen.splash.SplashScreen
 import attendees_check_app.composeapp.generated.resources.*
 import app.tktn.attendees_check.theme.AppTheme
 import app.tktn.attendees_check.theme.LocalThemeIsDark
+import app.tktn.core_feature.util.LocalNavigationController
 import kotlinx.coroutines.isActive
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
@@ -31,11 +33,11 @@ internal fun App(
 ) {
     AppTheme {
         CompositionLocalProvider(
-
+            LocalNavigationController provides navHostController
         ) {
             NavHost(
                 navHostController,
-                startDestination =
+                startDestination = SplashScreen
             ){
 
             }
