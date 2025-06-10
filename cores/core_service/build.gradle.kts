@@ -1,5 +1,5 @@
 plugins {
-    id("plugin.feature")
+    id("plugin.service")
 }
 
-android.namespace = "app.tktn.core_feature"
+android.namespace = "app.tktn.core_service"

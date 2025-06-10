@@ -1,5 +1,7 @@
 package com.app.plugin.convention
 
+import com.android.build.gradle.LibraryExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -18,7 +20,6 @@ class PluginService : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             plugins.apply {
-                apply("com.google.devtools.ksp")
                 apply(libs.findPlugin("multiplatform").get().get().pluginId)
                 apply(libs.findPlugin("android.library").get().get().pluginId)
                 apply(libs.findPlugin("kotlinx.serialization").get().get().pluginId)
@@ -26,6 +27,7 @@ class PluginService : Plugin<Project> {
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
+
                 androidTarget {
                     //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
                     instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
@@ -79,6 +81,26 @@ class PluginService : Plugin<Project> {
                     }
                     iosMain.dependencies {
                         implementation(libs.findLibrary("ktor.client.darwin").get())
+                    }
+                }
+            }
+            extensions.configure<LibraryExtension> {
+                compileSdk = 36
+                defaultConfig {
+                    minSdk = 24
+                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+                sourceSets.getByName("main").apply {
+                    manifest.srcFile("src/androidMain/AndroidManifest.xml")
+                    res.srcDirs("src/androidMain/res")
+                }
+                buildFeatures {
+                    //enables a Compose tooling support in the AndroidStudio
+//                    this.compose = true
+                }
+                buildTypes {
+                    getByName("debug") {
+
                     }
                 }
             }

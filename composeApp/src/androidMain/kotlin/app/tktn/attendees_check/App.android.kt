@@ -13,6 +13,6 @@ class AppActivity : ComponentActivity() {
             modules(listOf())
         }
         enableEdgeToEdge()
-        setContent { App() }
+        setContent { RootApp() }
     }
 }

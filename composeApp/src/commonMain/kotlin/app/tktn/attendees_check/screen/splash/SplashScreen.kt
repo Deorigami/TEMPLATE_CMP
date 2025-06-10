@@ -1,5 +1,8 @@
 package app.tktn.attendees_check.screen.splash
 
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import app.tktn.core_feature.base.BaseScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,17 +16,3 @@ object SplashScreen : BaseScreen() {
     }
 }
 
-@KoinViewModel
-class SplashScreenModel : BaseScreenModel<SplashScreenState, SplashScreenEvent>(SplashScreenState()) {
-    override fun onEvent(event: SplashScreenEvent) {
-
-    }
-}
-
-data class SplashScreenState(
-    val isLoading: Boolean = false
-)
-
-sealed interface SplashScreenEvent {
-
-}

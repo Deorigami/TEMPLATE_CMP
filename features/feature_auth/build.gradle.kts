@@ -1,5 +1,5 @@
 plugins {
-    id("plugin.service")
+    id("plugin.feature")
 }
 
 kotlin.sourceSets.commonMain {

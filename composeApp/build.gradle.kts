@@ -2,7 +2,7 @@
 
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.compose.reload.ComposeHotRun
+//import org.jetbrains.compose.reload.ComposeHotRun
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -13,11 +13,11 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.hotReload)
+//    alias(libs.plugins.hotReload)
     alias(libs.plugins.kotlinx.serialization)
 //    alias(libs.plugins.room)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.buildConfig)
+//    alias(libs.plugins.buildConfig)
 }
 
 kotlin {
@@ -46,7 +46,7 @@ kotlin {
 
     sourceSets {
         commonMain.configure {
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+//            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -109,11 +109,11 @@ kotlin {
 
 android {
     namespace = "app.tktn.attendees_check"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 35
+        minSdk = 24
+        targetSdk = 36
 
         applicationId = "app.tktn.attendees_check.androidApp"
         versionCode = 1
@@ -152,18 +152,10 @@ compose.desktop {
     }
 }
 
-//https://github.com/JetBrains/compose-hot-reload
-composeCompiler {
-    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
-}
-tasks.withType<ComposeHotRun>().configureEach {
-    mainClass.set("MainKt")
-}
-
-buildConfig {
-    // BuildConfig configuration here.
-    // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
-}
+//buildConfig {
+//    // BuildConfig configuration here.
+//    // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
+//}
 
 //room {
 //    schemaDirectory("$projectDir/schemas")
