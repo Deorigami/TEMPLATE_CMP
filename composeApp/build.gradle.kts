@@ -1,7 +1,9 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalWasmDsl::class)
 
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.reload.ComposeHotRun
 //import org.jetbrains.compose.reload.ComposeHotRun
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -13,11 +15,11 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
-//    alias(libs.plugins.hotReload)
+    alias(libs.plugins.hotReload)
     alias(libs.plugins.kotlinx.serialization)
 //    alias(libs.plugins.room)
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.buildConfig)
+    alias(libs.plugins.buildConfig)
 }
 
 kotlin {
@@ -46,7 +48,7 @@ kotlin {
 
     sourceSets {
         commonMain.configure {
-//            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -77,6 +79,7 @@ kotlin {
                 implementation(libs.materialKolor)
 
                 implementation(project(":features:feature_auth"))
+                implementation(project(":features:feature_dashboard"))
                 implementation(project(":cores:core_feature"))
             }
         }
@@ -151,6 +154,10 @@ compose.desktop {
             }
         }
     }
+}
+
+tasks.withType<ComposeHotRun>().configureEach {
+    mainClass.set("MainKt")
 }
 
 //buildConfig {
